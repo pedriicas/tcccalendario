@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda - Eventos Cotil</title>
+    
+    <!-- Scripts e Fontes Externas -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Link para o seu arquivo de CSS externo -->
+    <link rel="stylesheet" href="CSS/estilos.css">
+
+    <style>
+        /* Estilo para a transição suave do ícone de seta */
+        .accordion-arrow {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex">
+
+    <!-- Menu Lateral (Sidebar) -->
+    <aside id="sidebar" class="bg-gray-800 w-64 min-h-screen p-4 fixed md:relative transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-30">
+        <div class="flex items-center space-x-2 mb-10">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+            <h1 class="text-2xl font-bold gradient-text">Eventos Cotil</h1>
+        </div>
+        <nav class="flex flex-col space-y-2">
+            <!-- Itens do Menu -->
+            <a href="paginaInicial.html" class="flex items-center space-x-3 p-3 rounded-lg text-gray-300 hover:bg-gray-700 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 3.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" /></svg>
+                <span>Início</span>
+            </a>
+            <a href="agendaEventos.html" class="flex items-center space-x-3 p-3 rounded-lg bg-indigo-600/30 text-white font-semibold transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" /></svg>
+                <span>Agenda</span>
+            </a>
+            <a href="avisos.html" class="flex items-center space-x-3 p-3 rounded-lg text-gray-300 hover:bg-gray-700 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 2a6 6 0 00-6 6v3.586l-1.293 1.293a1 1 0 001.414 1.414L6 12.414V15a1 1 0 102 0v-2.586l1.293 1.293a1 1 0 001.414-1.414L9 11.586V8a4 4 0 118 0v3.586l1.293 1.293a1 1 0 001.414-1.414L16 12.414V8a6 6 0 00-6-6zm-2 13a2 2 0 114 0H8z" clip-rule="evenodd" /></svg>
+                <span>Avisos</span>
+            </a>
+            <a href="calendario.html" class="flex items-center space-x-3 p-3 rounded-lg text-gray-300 hover:bg-gray-700 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" /></svg>
+                <span>Calendário</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Overlay para fechar menu no mobile -->
+    <div id="overlay" class="fixed inset-0 bg-black/50 z-20 hidden md:hidden" onclick="toggleMenu()"></div>
+
+    <!-- Conteúdo Principal -->
+    <div class="flex-1">
+        <!-- Cabeçalho do Conteúdo -->
+        <header class="bg-gray-800/80 backdrop-blur-sm p-4 flex justify-between items-center md:hidden sticky top-0 z-10">
+            <button id="menu-toggle" class="text-white">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+            <div class="rounded-full h-8 w-8 bg-indigo-600 flex items-center justify-center font-bold">EC</div>
+        </header>
+
+        <!-- Área da Agenda -->
+        <main class="p-4 md:p-8">
+            <h2 class="text-3xl font-bold mb-8 gradient-text">Agenda de Eventos</h2>
+            
+            <div id="agenda-container" class="space-y-4">
+                <!-- Eventos serão inseridos aqui pelo JavaScript -->
+            </div>
+        </main>
+    </div>
+
+<script>
+    // --- LÓGICA DE CONTROLE DO MENU LATERAL (SIDEBAR) ---
+    const sidebar = document.getElementById('sidebar');
+    const menuToggle = document.getElementById('menu-toggle');
+    const overlay = document.getElementById('overlay');
+
+    const toggleMenu = () => {
+        sidebar.classList.toggle('-translate-x-full');
+        overlay.classList.toggle('hidden');
+    };
+    menuToggle.addEventListener('click', toggleMenu);
+
+    // --- LÓGICA DA AGENDA INTERATIVA (ACCORDION) ---
+    document.addEventListener('DOMContentLoaded', function() {
+        const agendaContainer = document.getElementById('agenda-container');
+
+        // DADOS DOS EVENTOS (no futuro, isso virá de um banco de dados)
+        const eventos = [
+            { 
+                title: 'Semana de Tecnologia 2025', 
+                date: '18/08/2025',
+                description: 'Uma semana inteira dedicada a palestras, workshops e competições sobre as mais novas tecnologias do mercado. Evento aberto para todos os alunos.'
+            },
+            { 
+                title: 'Palestra: IA no Mercado', 
+                date: '20/08/2025',
+                description: 'Aprenda como a Inteligência Artificial está transformando profissões e descubra como se preparar para o futuro. Palestrante convidado da Empresa X.'
+            },
+            { 
+                title: 'Feira de Ciências Anual', 
+                date: '22/09/2025',
+                description: 'Apresentação dos projetos de ciências desenvolvidos pelos alunos ao longo do ano. Venha prestigiar a inovação e criatividade de nossos colegas.'
+            },
+            { 
+                title: 'Campeonato de E-Sports', 
+                date: '05/10/2025',
+                description: 'Inscrições abertas para os torneios de Valorant, League of Legends e CS 2. Monte sua equipe e participe! Haverá premiação para os vencedores.'
+            },
+        ];
+
+        // Cria o HTML para cada evento
+        eventos.forEach((event, index) => {
+            const eventElement = document.createElement('div');
+            eventElement.className = 'bg-gray-800 rounded-lg shadow-md';
+            
+            eventElement.innerHTML = `
+                <button class="accordion-header w-full flex justify-between items-center p-5 text-left">
+                    <div>
+                        <h3 class="font-semibold text-lg gradient-text">${event.title}</h3>
+                        <p class="text-sm text-gray-400">${event.date}</p>
+                    </div>
+                    <svg class="accordion-arrow w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content hidden p-5 border-t border-gray-700">
+                    <p class="text-gray-300 mb-4">${event.description}</p>
+                    <button class="bg-gradient-to-r from-indigo-500 to-pink-500 text-white font-semibold py-2 px-4 rounded-lg hover:opacity-90 transition">
+                        Inscrever-se
+                    </button>
+                </div>
+            `;
+            agendaContainer.appendChild(eventElement);
+        });
+
+        // Adiciona a funcionalidade de clique
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const arrow = header.querySelector('.accordion-arrow');
+
+                // Fecha todos os outros accordions antes de abrir o novo
+                document.querySelectorAll('.accordion-content').forEach(item => {
+                    if (item !== content && !item.classList.contains('hidden')) {
+                        item.classList.add('hidden');
+                        item.previousElementSibling.querySelector('.accordion-arrow').classList.remove('rotate-180');
+                    }
+                });
+
+                // Abre ou fecha o accordion clicado
+                content.classList.toggle('hidden');
+                arrow.classList.toggle('rotate-180');
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
+
