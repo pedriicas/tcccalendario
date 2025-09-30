@@ -6,8 +6,10 @@ import App from './App';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+     <Routes>
+        <Route path="/" element={<PaginaInicial />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/app" element={<App />} />
+      </Routes>
   </React.StrictMode>
 );
