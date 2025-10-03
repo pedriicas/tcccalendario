@@ -24,6 +24,45 @@ body {
     color: var(--primary-text);
 }
 
+/* Tema claro */
+body.light {
+    --bg-color: #f4f4f9;
+    --text-color: #222;
+    --primary-color: #1976d2;
+    --card-bg: #fff;
+  }
+  
+  /* Tema escuro */
+  body.dark {
+    --bg-color: #121212;
+    --text-color: #eee;
+    --primary-color: #ff9800;
+    --card-bg: #1e1e1e;
+  }
+  
+  /* Aplicação */
+  body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+  }
+  
+  header, nav, main {
+    background: var(--card-bg);
+    padding: 10px;
+    border-radius: 6px;
+  }
+  
+  button, .theme-toggle {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+  }
+  
+
 /* --- Overlay --- */
 #overlay {
     position: fixed;
